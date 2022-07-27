@@ -10,6 +10,7 @@ func UploadRoute(app fiber.Router) {
 	uplaod := app.Group("/upload")
 
 	uplaod.Post("/image", controller.UploadImage)
+	uplaod.Post("/video", controller.UploadVideo)
 	uplaod.Post("/doc", controller.UploadDocs)
 	uplaod.Post("/other", controller.UploadOthers)
 	uplaod.Delete("/file/:id", controller.Deletefile)

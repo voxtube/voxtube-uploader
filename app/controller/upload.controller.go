@@ -31,6 +31,30 @@ func UploadImage(ctx *fiber.Ctx) error {
 	}
 }
 
+func UploadVideo(ctx *fiber.Ctx) error {
+	// Get video from body
+	formFile, err := ctx.FormFile("video")
+	if err != nil {
+		return ctx.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"message": err,
+		})
+	}
+
+	if tempFile, err := formFile.Open(); err != nil {
+		return ctx.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"message": err,
+		})
+	} else {
+		videoUploader, err := service.FileUploader(tempFile, service.UploadVideoDir)
+		if err != nil {
+			return ctx.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+				"message": err,
+			})
+		}
+		return ctx.JSON(videoUploader)
+	}
+}
+
 func UploadDocs(ctx *fiber.Ctx) error {
 	// Get image from body
 	formFile, err := ctx.FormFile("doc")

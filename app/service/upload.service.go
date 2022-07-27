@@ -14,9 +14,10 @@ import (
 var (
 	ctx             context.Context = context.Background()
 	cld, err                        = cloudinary.New()
-	UploadImageDir  string          = "uploads/images"
-	UploadDocsDir   string          = "uploads/docs"
-	UploadOthersDir string          = "uploads/others"
+	UploadImageDir  string          = "voxtube/uploads/images"
+	UploadVideoDir  string          = "voxtube/uploads/videos"
+	UploadDocsDir   string          = "voxtube/uploads/docs"
+	UploadOthersDir string          = "voxtube/uploads/others"
 )
 
 func init() {
